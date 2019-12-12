@@ -6,6 +6,10 @@ import os
 
 class Bot:
     def __init__(self):
+        self.co = socket.socket()
+        self.co.connect(("localhost",12222))
+        self.co.close()
+
         self.botServerSocket = socket.socket()
         self.botServerSocket.setsockopt(\
                  socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
@@ -29,6 +33,5 @@ class Bot:
         dos.send("pekckpe,kc,e,kc,mmk,")
         dos.close()
 
-port = 12345
 bot = Bot()
                 
