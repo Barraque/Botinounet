@@ -8,16 +8,13 @@ import threading
 def ajout(addr):
     print "new bot ", addr
     fichier = open("lstbot","r")
-    rep = True
-    for line in fichier:
-        if(line.split(' ')[0] == addr[0]):
-            rep = False
-            fichier.close()
-            break
-    if (rep):
-        fichier = open("lstbot","a")
-        fichier.write(addr[0]+" "+ str(addr[1])+"\n")
-        fichier.close()
+    with open("lstbot","r") as f:
+        lines = f.readlines()
+    with open("lstbot","w") as f:
+        for line in lines:
+            if line.split(' ')[0] != addr[0]:
+                f.write(line)
+        f.write(addr[0]+" "+str(addr[1])+"\n")
         
 ecoute  = socket.socket()
 ecoute.setsockopt(\
